@@ -62,25 +62,20 @@ To set this value in a new Windows Phone app, click the **Properties** folder an
 
 # Testing MobileCRM with Xamarin.UITest
 
-Xamarin-Only docs:
-
 Configuring and installing:
 
-Make sure you have google services on device/emulator.
-
-Installing Google Services in Geny (but for evolve we should use our Android player!):
-
-https://docs.google.com/a/xamarin.com/document/d/10ayBOFA-Qr-c2scS-DC3VP9PB-rPGXpUzyOU9HxRiAE/edit
+Make sure you have Google Play Services on device/emulator.
 
 Building:
-Make sure you sign with the shared debug keystore so maps work in Test Cloud:
+
+Make sure you sign with the correct keystore so maps work in Test Cloud:
 
 When building I did: Select MobileCRM.Android as startup item (I used Debug). Then Project > Publish Android Application . Make sure you use the debug.keystore supplied in the root of the project.
 Password: android
 Alias: androiddebugkey
 Key pass: android
 
-For iOS you should build and .ipa and install on device,  and/or build the .app bundle for simulator and make sure the test can see those.
+For iOS you should build and .ipa and install on device, and/or build the .app bundle for simulator and make sure the test can see those.
 
 Submitting to Test Cloud:
 
