@@ -1,96 +1,51 @@
-MobileCRM (Xamarin.Forms)
-=========
+#VervetaCRM Demo (Xamarin.Forms)
 
-**MobileCRM** is a pre-built [Xamarin.Forms](http://xamarin.com/forms) app for iOS, Android, and Windows Phone. It even has its own [webpage](http://xamarin.com/prebuilt/crm).
+VervetaCRM is a demo mobile CRM app for salespeople at a fictional office-supply company (named after the vervet monkey).  The app lets  salespeople track their sales performance, see their contacts, view customer location maps, and capture orders with user signatures.
 
-![screenshot](https://raw.githubusercontent.com/xamarin/xamarin-forms-samples/master/MobileCRM/Screenshots/MobileCRM-iOS-sml.png "iOS")
+Using [Xamarin.Forms](http://xamarin.com/forms), over 90% code was re-used to create a native app for iOS, Android, and Windows Phone. 
 
-![screenshot](https://raw.githubusercontent.com/xamarin/xamarin-forms-samples/master/MobileCRM/Screenshots/MobileCRM-Android-sml.png "Android")
+This [video overview](https://www.youtube.com/watch?v=19Hs8wzeC7w) provides an overview of how the app was created and architected.
 
-![screenshot](https://raw.githubusercontent.com/xamarin/xamarin-forms-samples/master/MobileCRM/Screenshots/MobileCRM-WinPhone-sml.png "Windows Phone")
+##Installation
+Instructions for viewing and compiling the code are available in the [setup guide](https://github.com/xamarin/VervetaCRM/wiki/Setup-Instructions).
 
-<span style="color:red"><b>NOTE:</b> The Shared Project type used in this sample [requires](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/shared_projects/) Visual Studio 2013 Update 2 or Xamarin Studio 5.</span>
+![](https://github.com/xamarin/VervetaCRM/blob/master/markdown-graphics/VervetaDashboard.png)
 
+![](https://github.com/xamarin/VervetaCRM/blob/master/markdown-graphics/VervetaMaps.png)
 
-Xamarin.Forms
--------------
-
-Visit the [Xamarin.Forms documentation](http://developer.xamarin.com/guides/cross-platform/xamarin-forms/) for more information on the APIs and controls available for building cross-platform apps with 100% shared C# code.
-
-The Xamarin.Forms code in this solution is split between two projects (this is for demonstration purposes, you could choose to use either type in your own apps):
-
-* **MobileCRM.Services** - a [PCL](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/pcl/) project that contains model classes and repositories to store them.
-* **MobileCRM.Shared** - a [Shared Project](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/shared_projects/) containing view models, pages and custom controls.
-
-Both those projects use Xamarin.Forms to ensure complete code sharing across platforms. This solution also has the following three application projects that reference the common code:
-
-* **MobileCRM.Android**
-* **MobileCRM.iOS**
-* **MobileCRM.WindowsPhone** (Visual Studio is required to build & run)
-
-Maps (special note)
-----
-
-`Xamarin.Forms.Maps` uses the native map APIs on each platform. If you are creating your own Xamarin.Forms app, **Xamarin.Forms.Maps** is a a separate NuGet package that you should download. On Android, this also has a dependency on **GooglePlayServices** (another NuGet) which is downloaded automatically. These have already been added to the MobileCRM solution.
-
-After adding a reference to **Xamarin.Forms.Maps** in a new project, you also need to add 
-
-    Xamarin.Forms.FormsMaps.Init()
-    
-calls to each application. Refer to the MobileCRM example where this is already implemented.
+![](https://github.com/xamarin/VervetaCRM/blob/master/markdown-graphics/VervetaCatalog.png)
 
 
-###iOS
+#Featured Technologies
+The demo app utilizes several technologies and frameworks to reflect a real-world mobile app architecture and maximum code re-use across mobile platforms:
 
-On iOS the map control "just works".
+##Xamarin.Forms
+**[MVVM Architecture](http://www.google.com/url?q=http%3A%2F%2Fdeveloper.xamarin.com%2Fguides%2Fcross-platform%2Fxamarin-forms%2Fxaml-for-xamarin-forms%2Fdata_bindings_to_mvvm%2F&sa=D&sntz=1&usg=AFQjCNFxdmJBNbm8-tWJ0CIXuN0fN2v6aA):** The app utilizes the MVVM architecture, using examples of both C# and XAML to define user views.
 
+**[Custom Renderers](http://www.google.com/url?q=http%3A%2F%2Fdeveloper.xamarin.com%2Fguides%2Fcross-platform%2Fxamarin-forms%2Fcustom-renderer%2F&sa=D&sntz=1&usg=AFQjCNGPqAndxlsRuCnyC65HcRW7YFoVsw):** enable writing platform-specific (e.g. - iOS, Android) user interface code to take advantage of native OS UI capabilities.
 
-###Android
+**[Dependency Service](http://www.google.com/url?q=http%3A%2F%2Fdeveloper.xamarin.com%2Fguides%2Fcross-platform%2Fxamarin-forms%2Fdependency-service%2F&sa=D&sntz=1&usg=AFQjCNFLXIS_LTyi3e1o5aSz0mdLjGbc8w)**: access native hardware features of the device such as phone and GPS.
 
-To use the Google Maps API on Android you must generate an **API key** and add it to your Android project. See the Xamarin doc on [obtaining a Google Maps API key](http://developer.xamarin.com/guides/android/platform_features/maps_and_location/maps/obtaining_a_google_maps_api_key/). After following those instructions, paste the **API key** in the `Properties/AndroidManifest.xml` file (view source and find/update the following element):
+##Components & Libraries
 
-    <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AbCdEfGhIjKlMnOpQrStUvWValueGoesHere" />
+![](https://github.com/xamarin/VervetaCRM/blob/master/markdown-graphics/SigPad-ComponentStore.png) 
 
-You need to follow these instructions in order for the map data to display in MobileCRM on Android.
+**[Signature Pad](https://www.google.com/url?q=https%3A%2F%2Fcomponents.xamarin.com%2Fview%2Fsignature-pad&sa=D&sntz=1&usg=AFQjCNHTI8Me1wTHH6vZOYlCrPRySjiPQw)**: Available from the Xamarin [Component Store](https://components.xamarin.com/) to capture and display user signatures.  This component highlights Xamarin.Forms extensibility; using custom renderers, it was easy to consume the platform-specific signature pad components into the Xamarin.Forms shared UI code.
 
-###Windows Phone
+**[OxyPlot](http://www.google.com/url?q=http%3A%2F%2Foxyplot.org%2F&sa=D&sntz=1&usg=AFQjCNGe7LMm2dEX-hGl3z0xWLu2Yvso0A)**: An outstanding, open-source .NET-based plotting and charting library available as a Portable Class Library (PCL) via NuGet.
 
-The `Map` control in Windows Phone requires the **ID_Cap_Map** capability to be selected. This has already been done in the source code, but should be kept in mind if you add maps to a new Xamarin.Forms app.
+##Cloud & Mobile Architecture
 
-To set this value in a new Windows Phone app, click the **Properties** folder and double-click the **WMAppManifest.xml** file. Go to the **Capabilities** tab and tick **ID_Cap_Map**.
+[Azure Mobile Services](http://azure.microsoft.com/en-us/services/mobile-services/): this app uses Azure Mobile Services (AMS) as the cloud backend for authentication and data.  It integrates with Azure Active Directory to create a consistent sign-on experience for mobile users.  The AMS component simplifies the implementation and uses oAuth to both authenticate a user and provide a token.
 
+Data is synchronized with an Azure SQL cloud database and a [SQLite](http://sqlite.org/) database that runs on the device – providing fast, offline data access and a consistent data access API.
 
-# Testing MobileCRM with Xamarin.UITest
+#License
 
-Configuring and installing:
-
-Make sure you have Google Play Services on device/emulator.
-
-Building:
-
-Make sure you sign with the correct keystore so maps work in Test Cloud:
-
-When building I did: Select MobileCRM.Android as startup item (I used Debug). Then Project > Publish Android Application . Make sure you use the debug.keystore supplied in the root of the project.
-Password: android
-Alias: androiddebugkey
-Key pass: android
-
-For iOS you should build and .ipa and install on device, and/or build the .app bundle for simulator and make sure the test can see those.
-
-Submitting to Test Cloud:
-
-Replace [API_KEY] and [DEVICES] below
-
-```
-mono packages/Xamarin.UITest.0.5.0.411-dev/tools/test-cloud.exe submit com.xamarin.Meetum.apk [API_KEY] --devices [DEVICES] --series "master" --locale "en_US" --assembly-dir MobileCRM.Test.Android/bin/Debug --keystore debug.keystore android androiddebugkey android --nunit-xml android.xml
-
-mono packages/Xamarin.UITest.0.5.0.411-dev/tools/test-cloud.exe submit MobileCRMiOS-1.0.ipa [API_KEY] --devices [DEVICES] --series "master" --locale "en_US" --assembly-dir MobileCRM.Test.iOS/bin/Debug --nunit-xml ios.xml --dsym MobileCRM.Test.iOS/MobileCRMiOS.app.dSym --category AccountReview
-```
-
-You can omit the dSym, but I recommend that you collect it and submit to Test Cloud - also makes a nice opportunity to talk about crash analysis in Test Cloud.
+The source code for this project is open-source under an [MIT license](http://www.google.com/url?q=http%3A%2F%2Fopensource.org%2Flicenses%2FMIT&sa=D&sntz=1&usg=AFQjCNHDbo7qf6bLsFB0hul9yFpGyirUdg).
 
 
-Authors
--------
+#Authors
 
-Zach Gramana, James Montemagno, Seth Rosetter, Charles Petzold, Craig Dunn
+
+Steven Yi, James Montemagno, Glenn Wester
